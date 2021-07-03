@@ -11,6 +11,14 @@ namespace Bhop.SDK.YaamiSDK
         public ulong addr;
         public LocalPlayer(ulong addr) => this.addr = addr;
 
+        #region outside localplayer
+        public float reach
+        {
+            get => MCM.readFloat(SDK_PS_Offsets.reach_Hex);
+            set => MCM.writeFloat(SDK_PS_Offsets.reach_Hex, value);
+        }
+        #endregion
+
         #region Defined vars
         public Vec2 bodyRots
         { get => new Vec2(addr + SDK_PS_Offsets.bodyRots_Hex); }
