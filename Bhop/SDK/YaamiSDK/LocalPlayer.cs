@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bhop.SDK.YaamiSDK
 {
@@ -72,6 +68,46 @@ namespace Bhop.SDK.YaamiSDK
         {
             get => MCM.readInt(addr + SDK_PS_Offsets.onGround_Hex) != 0;
             set => MCM.writeInt(addr + SDK_PS_Offsets.onGround_Hex, value ? 1 : 0);
+        }
+        #endregion
+
+        #region Custom vars
+        public bool isDead
+        {
+            get
+            {
+                if (hitbox.x <= 0.25 && hitbox.y <= 0.25)
+                    return true;
+                return false;
+            }
+        }
+        public bool inElytraFlight
+        {
+            get
+            {
+                if (hitbox.x >= 0.5 && hitbox.y >= 0.5 && hitbox.x <= 0.65 && hitbox.y <= 0.65 && onGround == false)
+                    return true;
+                return false;
+            }
+        }
+        public bool isMoving
+        {
+            get
+            {
+                if (keyHooks.keyBoolean('W') || keyHooks.keyBoolean('A') || keyHooks.keyBoolean('S') || keyHooks.keyBoolean('D') || keyHooks.keyBoolean((char)0x20))
+                    return true;
+                return false;
+            }
+        }
+        public bool isNull
+        {
+            get
+            {
+                if (playerAABB.AA.x == 0 && playerAABB.BB.x == 0 && playerAABB.AA.y == 0 && playerAABB.BB.y == 0 && playerAABB.AA.z == 0 && playerAABB.BB.z == 0
+                    && hitbox.x == 0f && hitbox.y == 0f && bodyRots.x == 0f && bodyRots.y == 0f)
+                    return true;
+                return false;
+            }
         }
         #endregion
 

@@ -18,7 +18,7 @@ namespace Bhop
             MCM.openGame();
             MCM.openWindowHost();
 
-            KeybindHandler kh = new KeybindHandler();
+            keyHooks kh = new keyHooks();
 
             mainLoop += gameTick;
 
@@ -32,16 +32,28 @@ namespace Bhop
 
         private static void gameTick(object sender, EventArgs e) // Put your code inside this function!
         {
+            if (Minecraft.lp.isNull) return; // Dont run code when local player is null
 
-            if (KeybindHandler.isKeyDown('V'))
+            if (Minecraft.lp.inWater) // jesus hacks
             {
-                Minecraft.lp.velocity.y = 0.1f;
+                Minecraft.lp.velocity.y = 0.15f;
+                Minecraft.lp.onGround = true;
             }
 
-            if (Minecraft.lp.inWater)
+            if (Minecraft.lp.inElytraFlight) // Elytra Flight
             {
-                Minecraft.lp.velocity.y = 0.1f;
-                Minecraft.lp.onGround = true;
+                if (keyHooks.keyBoolean('X'))
+                {
+                    Minecraft.lp.velocity.x = Minecraft.lp.velocity.x * 1.005f;
+                    Minecraft.lp.velocity.y = Minecraft.lp.velocity.y * 1.005f;
+                    Minecraft.lp.velocity.z = Minecraft.lp.velocity.z * 1.005f;
+                }
+            }
+
+            if (Minecraft.lp.isDead) // Death Coords
+            {
+                var vec = Minecraft.lp.playerAABB.AA;
+                Console.WriteLine("You died at " + vec.x + "," + vec.y + "," + vec.z);
             }
 
         }

@@ -1,6 +1,5 @@
 ﻿using Bhop.SDK.YaamiSDK;
 using System;
-using System.Threading;
 
 namespace Bhop.SDK
 {

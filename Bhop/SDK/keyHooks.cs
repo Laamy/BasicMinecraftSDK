@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace Bhop.SDK
 {
-    public class KeybindHandler
+    public class keyHooks
     {
-        public static bool isKeyDown(char key)
+        public static bool keyBoolean(char key)
         {
             if(MCM.isMinecraftFocused())
                 return MCM.GetAsyncKeyState(key);
             return false;
         }
 
-        public static KeybindHandler handler;
+        public static keyHooks handler;
         public static EventHandler<clientKeyEvent> clientKeyDownEvent;
         public static EventHandler<clientKeyEvent> clientKeyHeldEvent;
         public static EventHandler<clientKeyEvent> clientKeyUpEvent;
@@ -23,7 +23,7 @@ namespace Bhop.SDK
         Dictionary<char, uint> releaseBuffs = new Dictionary<char, uint>();
         Dictionary<char, bool> yesKey = new Dictionary<char, bool>();
 
-        public KeybindHandler()
+        public keyHooks()
         {
             handler = this;
             for (char c = (char)0; c < 0xFF; c++)

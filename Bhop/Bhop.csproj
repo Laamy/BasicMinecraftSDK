@@ -72,7 +72,7 @@
     <Compile Include="Mem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SDK\KeybindHandler.cs" />
+    <Compile Include="SDK\keyHooks.cs" />
     <Compile Include="SDK\SDK_PS_Offsets.cs" />
     <Compile Include="SDK\YaamiSDK\LocalPlayer.cs" />
     <Compile Include="SDK\YaamiSDK\Math.cs" />

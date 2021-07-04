@@ -42,6 +42,12 @@ namespace Bhop.SDK.YaamiSDK
             float diff_x = x - _Vec3.x, diff_y = y - _Vec3.y, diff_z = z - _Vec3.z;
             return (float)Math.Sqrt(diff_x * diff_x + diff_y * diff_y + diff_z * diff_z);
         }
+        public void setAs(Vec3 vec)
+        {
+            x = vec.x;
+            y = vec.y;
+            z = vec.z;
+        }
     }
     public class Vec2
     {
@@ -67,6 +73,11 @@ namespace Bhop.SDK.YaamiSDK
             get => MCM.readFloat(addr + 4);
             set => MCM.writeFloat(addr + 4, value);
         }
+        public void setAs(Vec2 vec)
+        {
+            x = vec.x;
+            y = vec.y;
+        }
     }
     public class AABB
     {
@@ -84,18 +95,28 @@ namespace Bhop.SDK.YaamiSDK
         }
         public AABB(AABB aabb)
         {
-            this.AA.x = aabb.AA.x;
-            this.AA.y = aabb.AA.y;
-            this.AA.z = aabb.AA.z;
+            AA.x = aabb.AA.x;
+            AA.y = aabb.AA.y;
+            AA.z = aabb.AA.z;
 
-            this.BB.x = aabb.BB.x;
-            this.BB.y = aabb.BB.y;
-            this.BB.z = aabb.BB.z;
+            BB.x = aabb.BB.x;
+            BB.y = aabb.BB.y;
+            BB.z = aabb.BB.z;
         }
         public Vec3 AA
         { get => new Vec3(addr); }
         public Vec3 BB
         { get => new Vec3(addr + 12); }
+        public void setAs(AABB aabb)
+        {
+            AA.x = aabb.AA.x;
+            AA.y = aabb.AA.y;
+            AA.z = aabb.AA.z;
+
+            BB.x = aabb.BB.x;
+            BB.y = aabb.BB.y;
+            BB.z = aabb.BB.z;
+        }
     }
     public class MathUtils
     {
