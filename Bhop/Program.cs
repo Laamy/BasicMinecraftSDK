@@ -12,8 +12,12 @@ namespace Bhop
         public static EventHandler<EventArgs> mainLoop;
         static void Main(string[] args)
         {
-            if (Process.GetProcessesByName("Minecraft.Windows")[0] != null)
-                Process.GetProcessesByName("Minecraft.Windows")[0].Kill();
+            try
+            {
+                if (Process.GetProcessesByName("Minecraft.Windows")[0] != null)
+                    Process.GetProcessesByName("Minecraft.Windows")[0].Kill();
+            }
+            catch { }
 
             Process.Start("minecraft://");
 
@@ -69,7 +73,8 @@ namespace Bhop
             if (Minecraft.lp.isLookingAtEntity /*keyHooks.keyBoolean('R')*/)
                 Minecraft.ph.hit(); // Auto clicker if you hold R
 
-            Minecraft.vi.
+
+            Minecraft.ph.sprint(); // Send sprint vPacket
 
         }
     }

@@ -9,8 +9,8 @@ namespace Bhop.SDK
         public static ulong reach_Hex = 0x0;
 
         // Pointers
-        public static ulong sprinting = 0x03F11820;
-        public static UInt64[] sprinting_offsets = { 0x98, 0x138, 0xF0, 0x8, 0x1C0, 0x8, 0x9EC };
+        /*public static ulong sprinting = 0x03F11820;
+        public static UInt64[] sprinting_offsets = { 0x98, 0x138, 0xF0, 0x8, 0x1C0, 0x8, 0x9EC };*/
 
         public static ulong vanillaInput = 0x03FE4618;
         public static UInt64[] vanillaInput_offsets = { 0x0, 0x4D0, 0x2A0, 0x8, 0x0 };
@@ -21,7 +21,8 @@ namespace Bhop.SDK
         public static ulong localPlayer = 0x04020228;
         public static string localPlayer_offsets = "0 18 B8 0";
         public static string localPlayer_entityList = "58";
-        public static ulong bodyRots_Hex = 0x0, // localPlayer
+        public static ulong // localPlayer
+            bodyRots_Hex = 0x0,
             Step_Hex = 0x0,
             Level_Hex = 0x0, // Currently useless (Sig has been commented out due to sig scanning has limits!)
             Type_Hex = 0x410, // Currently useless

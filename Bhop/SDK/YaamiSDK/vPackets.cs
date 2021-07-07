@@ -7,5 +7,7 @@ namespace Bhop.SDK.YaamiSDK
         public bool copyBlock() => gh_Mouse.sendAction(gh_Mouse.MouseEF.CopyBlock);
         public bool place() => gh_Mouse.sendAction(gh_Mouse.MouseEF.Place);
         public bool hit() => gh_Mouse.sendAction(gh_Mouse.MouseEF.Hit);
+
+        public bool sprint() => gh_keyboard.sendAction(gh_keyboard.KeyboardEF.Sprinting);
     }
 }
