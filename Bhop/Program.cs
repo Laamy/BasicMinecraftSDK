@@ -3,6 +3,7 @@ using System.Diagnostics;
 
 using Bhop.SDK.YaamiSDK; // Bhop SDK imports
 using Bhop.SDK;
+using Bhop.gameHooks;
 
 namespace Bhop
 {
@@ -11,8 +12,9 @@ namespace Bhop
         public static EventHandler<EventArgs> mainLoop;
         static void Main(string[] args)
         {
-            /*if (Process.GetProcessesByName("Minecraft.Windows")[0] != null)
-                Process.GetProcessesByName("Minecraft.Windows")[0].Kill();*/
+            if (Process.GetProcessesByName("Minecraft.Windows")[0] != null)
+                Process.GetProcessesByName("Minecraft.Windows")[0].Kill();
+
             Process.Start("minecraft://");
 
             MCM.openGame();
@@ -34,11 +36,15 @@ namespace Bhop
         {
             if (Minecraft.lp.isNull) return; // Dont run code when local player is null
 
+
+
             if (Minecraft.lp.inWater) // jesus hacks
             {
-                Minecraft.lp.velocity.y = 0.15f;
+                Minecraft.lp.velocity.y = 0.1f;
                 Minecraft.lp.onGround = true;
             }
+
+
 
             if (Minecraft.lp.inElytraFlight) // Elytra Flight
             {
@@ -50,11 +56,20 @@ namespace Bhop
                 }
             }
 
+
+
             if (Minecraft.lp.isDead) // Death Coords
             {
                 var vec = Minecraft.lp.playerAABB.AA;
                 Console.WriteLine("You died at " + vec.x + "," + vec.y + "," + vec.z);
             }
+
+
+
+            if (Minecraft.lp.isLookingAtEntity /*keyHooks.keyBoolean('R')*/)
+                Minecraft.ph.hit(); // Auto clicker if you hold R
+
+            Minecraft.vi.
 
         }
     }

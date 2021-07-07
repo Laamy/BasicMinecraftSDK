@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Bhop.SDK.YaamiSDK
 {
@@ -52,7 +53,7 @@ namespace Bhop.SDK.YaamiSDK
             set => MCM.writeString(addr + SDK_PS_Offsets.Username_Hex, value);
         }
 
-        public int lokingEntityID
+        public int lookingEntityID
         {
             get => MCM.readInt(addr + SDK_PS_Offsets.LookingEntityID_Hex);
             set => MCM.writeInt(addr + SDK_PS_Offsets.LookingEntityID_Hex, value);
@@ -105,6 +106,15 @@ namespace Bhop.SDK.YaamiSDK
             {
                 if (playerAABB.AA.x == 0 && playerAABB.BB.x == 0 && playerAABB.AA.y == 0 && playerAABB.BB.y == 0 && playerAABB.AA.z == 0 && playerAABB.BB.z == 0
                     && hitbox.x == 0f && hitbox.y == 0f && bodyRots.x == 0f && bodyRots.y == 0f)
+                    return true;
+                return false;
+            }
+        }
+        public bool isLookingAtEntity
+        {
+            get
+            {
+                if (lookingEntityID != -1)
                     return true;
                 return false;
             }
