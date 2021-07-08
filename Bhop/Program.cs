@@ -70,8 +70,9 @@ namespace Bhop
 
 
 
-            if (Minecraft.lp.isLookingAtEntity /*keyHooks.keyBoolean('R')*/)
-                Minecraft.ph.hit(); // Auto clicker if you hold R
+            if (keyHooks.keyBoolean('R'))
+                Minecraft.ph.walk();
+
 
 
             Minecraft.ph.sprint(); // Send sprint vPacket

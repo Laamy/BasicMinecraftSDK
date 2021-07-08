@@ -57,8 +57,8 @@ namespace Bhop.SDK
 
             Utils.sigScanThread(() => {
                 ulong addr = MCRM.FindPattern("F2 0F 11 87 ? ? ? ? F3 0F 10 8F ? ? ? ? F3", out storeSig) + 4;
-                Console.WriteLine("Found bodyRots_Hex " + MCM.readInt(addr).ToString("X"));
-                bodyRots_Hex = Convert.ToUInt64(MCM.readInt(addr));
+                Console.WriteLine("Found bodyRots_Hex " + (MCM.readInt(addr) - 4).ToString("X"));
+                bodyRots_Hex = Convert.ToUInt64(MCM.readInt(addr) - 4);
             });
 
             Utils.sigScanThread(() => {
