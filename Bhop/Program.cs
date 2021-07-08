@@ -4,6 +4,8 @@ using System.Diagnostics;
 using Bhop.SDK.YaamiSDK; // Bhop SDK imports
 using Bhop.SDK;
 using Bhop.gameHooks;
+using Bhop.IO;
+using System.Threading;
 
 namespace Bhop
 {
@@ -25,6 +27,23 @@ namespace Bhop
             MCM.openWindowHost();
 
             keyHooks kh = new keyHooks();
+
+            if (!YaamiIO.hasConfig()) // Setup config
+            {
+                YaamiIO.saveConfig(YaamiIO.dataFileName);
+            }
+            else
+            {
+                YaamiIO.loadConfig(YaamiIO.dataFileName);
+            }
+
+            Utils.sigScanThread(() => {
+                while (true)
+                {
+                    Thread.Sleep(5000);
+                    YaamiIO.saveConfig(YaamiIO.dataFileName);
+                }
+            });
 
             mainLoop += gameTick;
 
@@ -71,7 +90,7 @@ namespace Bhop
 
 
             if (keyHooks.keyBoolean('R'))
-                Minecraft.ph.walk();
+                Minecraft.lp.playerAABB.moveTo(new Vec3(1, 1, 1));
 
 
 
