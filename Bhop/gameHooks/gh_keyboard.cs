@@ -15,6 +15,11 @@ namespace Bhop.gameHooks
             Right = 0x44,
         }
 
+        /// <summary>
+        /// Send custom keyboard action
+        /// </summary>
+        /// <param name="keyFlag"></param>
+        /// <returns>Returns false if fails</returns>
         public static bool sendAction(KeyboardEF keyFlag)
         {
             if (MCM.isMinecraftFocused())

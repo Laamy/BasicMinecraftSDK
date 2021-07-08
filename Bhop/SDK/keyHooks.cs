@@ -5,6 +5,11 @@ namespace Bhop.SDK
 {
     public class keyHooks
     {
+        /// <summary>
+        /// Is key pressed & minecraft focused?
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static bool keyBoolean(char key)
         {
             if(MCM.isMinecraftFocused())
@@ -12,7 +17,11 @@ namespace Bhop.SDK
             return false;
         }
 
+        /// <summary>
+        /// Keyboard handler
+        /// </summary>
         public static keyHooks handler;
+
         public static EventHandler<clientKeyEvent> clientKeyDownEvent;
         public static EventHandler<clientKeyEvent> clientKeyHeldEvent;
         public static EventHandler<clientKeyEvent> clientKeyUpEvent;

@@ -35,6 +35,9 @@ namespace Bhop.SDK
             inWater_Hex = 0x0,
             onGround_Hex = 0x0;
 
+        /// <summary>
+        /// Scan for sigs inside of minecraft for the new local player offsets
+        /// </summary>
         public static void findOffsets() // Sig scans to find the new offsets
         {
             SigScanSharp MCRM = new SigScanSharp(MCM.mcProcHandle);
