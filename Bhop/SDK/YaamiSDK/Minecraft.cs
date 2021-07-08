@@ -8,7 +8,7 @@ namespace Bhop.SDK.YaamiSDK
         /// Minecraft LocalPlayer (Main class!)
         /// </summary>
         public static LocalPlayer lp
-        { get => new LocalPlayer(MCM.baseEvaluatePointer(SDK_PS_Offsets.localPlayer, MCM.ceByte2uLong(SDK_PS_Offsets.localPlayer_offsets))); }
+        { get => new LocalPlayer(MCM.baseEvaluatePointer(SDK_PS_Offsets.localPlayer, MCM.ceByte2uLong(SDK_PS_Offsets.localPlayer_offsets + "0"))); }
 
         /// <summary>
         /// Mostly useless (EXPECT FOR RAPID HIT/PLACE!)

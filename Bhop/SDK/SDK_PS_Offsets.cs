@@ -19,21 +19,26 @@ namespace Bhop.SDK
             placing_Hex = hitting_Hex + 1;
 
         public static ulong localPlayer = 0x04020228;
-        public static string localPlayer_offsets = "0 18 B8 0";
-        public static string localPlayer_entityList = "58";
+        public static string localPlayer_offsets = "0 18 B8 ";
+        public static string gameDim_offsets = "370 0";
         public static ulong // localPlayer
             bodyRots_Hex = 0x0,
             Step_Hex = 0x0,
-            Level_Hex = 0x0, // Currently useless (Sig has been commented out due to sig scanning has limits!)
             Type_Hex = 0x410, // Currently useless
             PositionX_Hex = 0x0,
-            Hitbox_Hex = 0x0, // 0x4EC Should always be 28 bytes from the X Position
+            WorldAge_Hex = 0x2B0,
+            BlocksTraveled_Ex_Hex = 0x250,
+            BlocksTraveled_Hex = BlocksTraveled_Ex_Hex + 16,
+            Hitbox_Hex = 0x0, // Hitbox should always be 28 bytes from the X Position
             VelocityX_Hex = 0x0,
             SwingAn_Hex = 0x0,
             Username_Hex = 0x920, // Currently useless
             LookingEntityID_Hex = 0x0,
             inWater_Hex = 0x0,
-            onGround_Hex = 0x0;
+            onGround_Hex = 0x0,
+
+            gameDim_Hex = 0x18 // gameDim class
+            ;
 
         /// <summary>
         /// Scan for sigs inside of minecraft for the new local player offsets
@@ -84,12 +89,6 @@ namespace Bhop.SDK
                 Console.WriteLine("Found LookingEntityID_Hex " + MCM.readInt(addr).ToString("X"));
                 LookingEntityID_Hex = Convert.ToUInt64(MCM.readInt(addr));
             });
-
-            /*Utils.sigScanThread(() => {
-                ulong addr = MCRM.FindPattern("48 8B 8F ? ? ? ? 48 8B 11 FF 92 ? ? ? ? 48 8B 8F ? ? ? ? 48 8B", out storeSig) + 3;
-                Console.WriteLine("Found Level_Hex " + MCM.readInt(addr).ToString("X"));
-                Level_Hex = Convert.ToUInt64(MCM.readInt(addr));
-            });*/
 
             Utils.sigScanThread(() => {
                 ulong addr = MCRM.FindPattern("80 BB ? ? ? ? 00 74 1A FF", out storeSig) + 2;

@@ -21,6 +21,39 @@ namespace Bhop.SDK.YaamiSDK
 
         #region Defined vars
         /// <summary>
+        /// Exact blocks traveled (Float)
+        /// </summary>
+        public float blocksTraveled_Ex
+        {
+            get => MCM.readFloat(addr + SDK_PS_Offsets.BlocksTraveled_Ex_Hex);
+            set => MCM.writeFloat(addr + SDK_PS_Offsets.BlocksTraveled_Ex_Hex, value);
+        }
+
+        /// <summary>
+        /// Blocks Traveled
+        /// </summary>
+        public int blocksTraveled
+        {
+            get => MCM.readInt(addr + SDK_PS_Offsets.BlocksTraveled_Hex);
+            set => MCM.writeInt(addr + SDK_PS_Offsets.BlocksTraveled_Hex, value);
+        }
+
+        /// <summary>
+        /// Returns how many ticks sinse you joined the world
+        /// </summary>
+        public int worldAge
+        {
+            get => MCM.readInt(addr + SDK_PS_Offsets.WorldAge_Hex);
+            set => MCM.writeInt(addr + SDK_PS_Offsets.WorldAge_Hex, value);
+        }
+
+        /// <summary>
+        /// Returns the name of the current dimension
+        /// </summary>
+        public string dimension
+        { get => MCM.readString(MCM.baseEvaluatePointer(SDK_PS_Offsets.localPlayer, MCM.ceByte2uLong(SDK_PS_Offsets.localPlayer_offsets + SDK_PS_Offsets.gameDim_offsets)), 16); }
+
+        /// <summary>
         /// Player Pitch & Yaw (PnY)
         /// Body rotations
         /// Orientation
