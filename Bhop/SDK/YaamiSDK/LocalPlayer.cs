@@ -20,6 +20,22 @@ namespace Bhop.SDK.YaamiSDK
         #endregion
 
         #region Defined vars
+        public Gamemode gamemode
+        {
+            get
+            {
+                ulong gm = MCM.readInt64(addr + SDK_PS_Offsets.Gamemode_Hex);
+                if (gm == 0)
+                    return Gamemode.Survival;
+                if (gm == 1 * 4294967296)
+                    return Gamemode.Creative;
+                if (gm == 2 * 4294967296)
+                    return Gamemode.Adventure;
+                return Gamemode.Emtpy;
+            }
+            set => MCM.writeInt64(addr + SDK_PS_Offsets.Gamemode_Hex, (ulong)value * 4294967296);
+        }
+
         /// <summary>
         /// Exact blocks traveled (Float)
         /// </summary>
@@ -234,6 +250,16 @@ namespace Bhop.SDK.YaamiSDK
         /// </summary>
         public Vec3 lookingVec
         { get => MathUtils.directionalVector((bodyRots.x + 89.9f) * (float)Math.PI / 178F, bodyRots.y * (float)Math.PI / 178F); }
+        #endregion
+
+        #region Defined Enums
+        public enum Gamemode
+        {
+            Survival = 0x0,
+            Creative = 0x1,
+            Adventure = 0x2,
+            Emtpy = 0x07,
+        }
         #endregion
     }
 }

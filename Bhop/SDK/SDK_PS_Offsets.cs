@@ -27,6 +27,7 @@ namespace Bhop.SDK
             Type_Hex = 0x410, // Currently useless
             PositionX_Hex = 0x0,
             WorldAge_Hex = 0x2B0,
+            Gamemode_Hex = 0x1E08,
             BlocksTraveled_Ex_Hex = 0x250,
             BlocksTraveled_Hex = BlocksTraveled_Ex_Hex + 16,
             Hitbox_Hex = 0x0, // Hitbox should always be 28 bytes from the X Position
