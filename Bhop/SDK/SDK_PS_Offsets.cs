@@ -28,11 +28,15 @@ namespace Bhop.SDK
             PositionX_Hex = 0x0,
             WorldAge_Hex = 0x2B0,
             Gamemode_Hex = 0x1E08,
+            isFlying_Hex = 0x9C0,
             BlocksTraveled_Ex_Hex = 0x250,
             BlocksTraveled_Hex = BlocksTraveled_Ex_Hex + 16,
             Hitbox_Hex = 0x0, // Hitbox should always be 28 bytes from the X Position
             VelocityX_Hex = 0x0,
             SwingAn_Hex = 0x0,
+            heldItemCount_Hex = 0x228A,
+            viewCreativeItems = 0x9D8,
+            inInventory = 0x11E0,
             Username_Hex = 0x920, // Currently useless
             LookingEntityID_Hex = 0x0,
             inWater_Hex = 0x0,

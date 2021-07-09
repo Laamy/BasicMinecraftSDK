@@ -20,6 +20,33 @@ namespace Bhop.SDK.YaamiSDK
         #endregion
 
         #region Defined vars
+        public bool viewCreativeitems
+        {
+            get => MCM.readInt(addr + SDK_PS_Offsets.viewCreativeItems) != 0;
+            set => MCM.writeInt(addr + SDK_PS_Offsets.viewCreativeItems, value ? 1 : 0);
+        }
+
+        /// <summary>
+        /// Returns true if local player is flying else false;
+        /// </summary>
+        public bool isFlying
+        {
+            get => MCM.readInt(addr + SDK_PS_Offsets.isFlying_Hex) != 0;
+            set => MCM.writeInt(addr + SDK_PS_Offsets.isFlying_Hex, value ? 1 : 0);
+        }
+
+        /// <summary>
+        /// Returns true if user is inside inventory.
+        /// </summary>
+        public bool inInventory
+        {
+            get => MCM.readInt(addr + SDK_PS_Offsets.inInventory) != 1;
+            set => MCM.writeInt(addr + SDK_PS_Offsets.inInventory, value ? 1 : 5);
+        }
+
+        /// <summary>
+        /// Set your gamemode via an enum
+        /// </summary>
         public Gamemode gamemode
         {
             get
