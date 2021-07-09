@@ -20,6 +20,18 @@ namespace Bhop.SDK.YaamiSDK
         #endregion
 
         #region Defined vars
+        /// <summary>
+        /// Returns the amount of items your players holding
+        /// </summary>
+        public int heldItemCount
+        {
+            get => MCM.readInt(addr + SDK_PS_Offsets.heldItemCount_Hex);
+            set => MCM.writeInt(addr + SDK_PS_Offsets.heldItemCount_Hex, value);
+        }
+
+        /// <summary>
+        /// Returns true if you can view creative items else false.
+        /// </summary>
         public bool viewCreativeitems
         {
             get => MCM.readInt(addr + SDK_PS_Offsets.viewCreativeItems) != 0;
@@ -280,6 +292,9 @@ namespace Bhop.SDK.YaamiSDK
         #endregion
 
         #region Defined Enums
+        /// <summary>
+        /// Gamemode enums for the local player
+        /// </summary>
         public enum Gamemode
         {
             Survival = 0x0,
