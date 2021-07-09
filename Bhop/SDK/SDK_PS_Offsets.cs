@@ -8,10 +8,6 @@ namespace Bhop.SDK
         // Statics
         public static ulong reach_Hex = 0x0;
 
-        // Pointers
-        /*public static ulong sprinting = 0x03F11820;
-        public static UInt64[] sprinting_offsets = { 0x98, 0x138, 0xF0, 0x8, 0x1C0, 0x8, 0x9EC };*/
-
         public static ulong vanillaInput = 0x03FE4618;
         public static UInt64[] vanillaInput_offsets = { 0x0, 0x4D0, 0x2A0, 0x8, 0x0 };
         public static ulong
@@ -41,9 +37,8 @@ namespace Bhop.SDK
             LookingEntityID_Hex = 0x0,
             inWater_Hex = 0x0,
             onGround_Hex = 0x0,
-
-            gameDim_Hex = 0x18 // gameDim class
-            ;
+            gameDim_Hex = 0x18; // gameDim class
+            
 
         /// <summary>
         /// Scan for sigs inside of minecraft for the new local player offsets
