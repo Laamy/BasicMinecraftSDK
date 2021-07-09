@@ -107,7 +107,7 @@ namespace Bhop.SDK
             Utils.sigScanThread(() => {
                 ulong addr = MCRM.FindPattern("00 00 40 40 DB 0F", out storeSig);
                 Console.WriteLine("Found reach_Hex static " + addr.ToString("X"));
-                reach_Hex = addr;
+                reach_Hex = 0x3500ED0; // I made some weird mistake here...
             });
         }
     }

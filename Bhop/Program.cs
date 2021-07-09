@@ -4,7 +4,6 @@ using System;
 
 using Bhop.SDK.YaamiSDK; // Bhop SDK imports
 using Bhop.SDK;
-using Bhop.gameHooks;
 using Bhop.IO;
 using Bhop.Modules;
 
@@ -24,6 +23,8 @@ namespace Bhop
             catch { }
 
             Process.Start("minecraft://");
+
+            Console.ForegroundColor = ConsoleColor.Gray;
 
             MCM.openGame();
             MCM.openWindowHost();
@@ -51,31 +52,18 @@ namespace Bhop
                     {
                         Console.Write("Mc_ModLauncher> ");
                         string input = Console.ReadLine();
-
-                        if (input.ToUpper().StartsWith("TOGGLE "))
+                        string[] _args = input.Split(' ');
+                        bool validCommand = false;
+                        foreach (Cmd cmd in ModHandle.handle.commands)
+                            if (_args[0].ToUpper() == cmd.name.ToUpper())
+                                validCommand = true;
+                        if (validCommand)
                         {
-                            foreach (Mod mod in ModHandle.handle.modules)
-                                if (mod.name.ToUpper() == input.ToUpper().Split(' ')[1])
-                                {
-                                    mod.enabled = !mod.enabled;
-                                    Console.WriteLine($"{mod.name} [{mod.category}] [{mod.enabled}]\r\n");
-                                }
+                            foreach (Cmd cmd in ModHandle.handle.commands)
+                                if (_args[0].ToUpper() == cmd.name.ToUpper())
+                                    cmd.executed(_args);
                         }
-                        else if (input.ToUpper() == "LIST")
-                        {
-                            foreach (Mod mod in ModHandle.handle.modules)
-                                Console.WriteLine($"{mod.name} [{mod.category}] [{mod.enabled}]");
-                            Console.WriteLine("\r\n");
-                        }
-                        else if (input.ToUpper() == "HELP")
-                        {
-                            Console.WriteLine("List - List mods");
-                            Console.WriteLine("Toggle <name> - Toggle mods\r\n");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid command?\r\n");
-                        }
+                        else DBG.error("Invalid command?");
                     }
                 }
             });

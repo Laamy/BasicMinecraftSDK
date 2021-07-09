@@ -70,12 +70,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBG.cs" />
     <Compile Include="gameHooks\gh_keyboard.cs" />
     <Compile Include="gameHooks\gh_Mouse.cs" />
     <Compile Include="IO\YaamiIO.cs" />
     <Compile Include="Mem.cs" />
+    <Compile Include="Modules\Cmd.cs" />
+    <Compile Include="Modules\Command\Modules.cs" />
+    <Compile Include="Modules\Command\Toggle.cs" />
+    <Compile Include="Modules\Command\Commands.cs" />
+    <Compile Include="Modules\Command\Teleportation.cs" />
     <Compile Include="Modules\Mod.cs" />
     <Compile Include="Modules\ModHandle.cs" />
+    <Compile Include="Modules\Module\Reach.cs" />
     <Compile Include="Modules\Module\Noclip.cs" />
     <Compile Include="Modules\Module\DeathCoords.cs" />
     <Compile Include="Modules\Module\CreativeFly.cs" />

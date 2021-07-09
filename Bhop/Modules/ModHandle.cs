@@ -1,4 +1,5 @@
-﻿using Bhop.Modules.Module;
+﻿using Bhop.Modules.Command;
+using Bhop.Modules.Module;
 using System;
 using System.Collections.Generic;
 
@@ -15,6 +16,7 @@ namespace Bhop.Modules
         /// Modules list
         /// </summary>
         public List<Mod> modules = new List<Mod>();
+        public List<Cmd> commands = new List<Cmd>();
 
         public ModHandle()
         {
@@ -27,6 +29,13 @@ namespace Bhop.Modules
             new DeathCoords();
             new Jesus();
             new Noclip();
+            new Reach();
+
+            // Deal with the commands VVV
+            new Commands();
+            new Command.Modules();
+            new Teleportation();
+            new Toggle();
 
             moduleThread();
         }

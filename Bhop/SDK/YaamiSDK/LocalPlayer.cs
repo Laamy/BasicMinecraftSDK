@@ -8,17 +8,6 @@ namespace Bhop.SDK.YaamiSDK
         public ulong addr;
         public LocalPlayer(ulong addr) => this.addr = addr;
 
-        #region outside localplayer
-        /// <summary>
-        /// Player entity reach (LocalPlayer Only!)
-        /// </summary>
-        public float reach
-        {
-            get => MCM.readFloat(SDK_PS_Offsets.reach_Hex);
-            set => MCM.writeFloat(SDK_PS_Offsets.reach_Hex, value);
-        }
-        #endregion
-
         #region Defined vars
         /// <summary>
         /// Returns the amount of items your players holding
@@ -277,7 +266,15 @@ namespace Bhop.SDK.YaamiSDK
         /// External setPos function
         /// </summary>
         /// <param name="vec">Vector3</param>
-        public void setPos(Vec3 vec) => playerAABB.moveTo(vec);
+        public void setPos(Vec3 vec)
+        {
+            playerAABB.AA.x = vec.x;
+            playerAABB.BB.x = vec.x + 0.6f;
+            playerAABB.AA.y = vec.y;
+            playerAABB.BB.y = vec.y + 1.8f;
+            playerAABB.AA.z = vec.z;
+            playerAABB.BB.z = vec.z + 0.6f;
+        }
 
         /// <summary>
         /// External refreshAABB function
