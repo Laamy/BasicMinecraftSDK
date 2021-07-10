@@ -25,14 +25,15 @@ namespace Bhop.Modules
 
             // Deal with modules VVV
             new AirJump();
+            new Autosprint();
             new CreativeFly();
             new DeathCoords();
             new Jesus();
             new Noclip();
-            new Reach();
 
             // Deal with the commands VVV
             new Commands();
+            new Gamemode();
             new Command.Modules();
             new Teleportation();
             new Toggle();

@@ -77,12 +77,13 @@
     <Compile Include="Mem.cs" />
     <Compile Include="Modules\Cmd.cs" />
     <Compile Include="Modules\Command\Modules.cs" />
+    <Compile Include="Modules\Command\Gamemode.cs" />
     <Compile Include="Modules\Command\Toggle.cs" />
     <Compile Include="Modules\Command\Commands.cs" />
     <Compile Include="Modules\Command\Teleportation.cs" />
     <Compile Include="Modules\Mod.cs" />
     <Compile Include="Modules\ModHandle.cs" />
-    <Compile Include="Modules\Module\Reach.cs" />
+    <Compile Include="Modules\Module\Autosprint.cs" />
     <Compile Include="Modules\Module\Noclip.cs" />
     <Compile Include="Modules\Module\DeathCoords.cs" />
     <Compile Include="Modules\Module\CreativeFly.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SDK\keyHooks.cs" />
     <Compile Include="SDK\SDK_PS_Offsets.cs" />
+    <Compile Include="SDK\YaamiSDK\MinecraftEvents.cs" />
     <Compile Include="SDK\YaamiSDK\vPackets.cs" />
     <Compile Include="SDK\YaamiSDK\LocalPlayer.cs" />
     <Compile Include="SDK\YaamiSDK\Math.cs" />

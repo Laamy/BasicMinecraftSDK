@@ -22,7 +22,12 @@ namespace Bhop
             }
             catch { }
 
-            Process.Start("minecraft://");
+            try
+            {
+                Process.Start("minecraft://");
+            }
+            catch { }
+
 
             Console.ForegroundColor = ConsoleColor.Gray;
 
@@ -31,6 +36,8 @@ namespace Bhop
 
             ModHandle mh = new ModHandle();
             keyHooks kh = new keyHooks();
+
+            MinecraftEvents.invokeSetup();
 
             if (!YaamiIO.hasConfig()) // Setup config
                 YaamiIO.saveConfig(YaamiIO.dataFileName);

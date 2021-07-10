@@ -8,20 +8,15 @@ namespace Bhop.Modules.Module
     {
         public DeathCoords() : base("DeathCoords", "Base")
         {
-            Utils.sigScanThread(() => {
-                while (true)
-                {
-                    Thread.Sleep(1000);
-                    if (enabled)
-                    {
-                        if (!Minecraft.lp.isNull)
-                            if (Minecraft.lp.isDead)
-                            {
-                                Console.WriteLine($"You died at {Minecraft.lp.playerAABB.AA.x}, {Minecraft.lp.playerAABB.AA.y}, {Minecraft.lp.playerAABB.AA.z}");
-                            }
-                    }
-                }
-            });
+            MinecraftEvents.onDeath += playerDied;
+        }
+
+        private void playerDied(object sender, plrEvent e)
+        {
+            if (!Minecraft.lp.isNull)
+            {
+                Console.WriteLine($"You died at {Minecraft.lp.playerAABB.AA.x}, {Minecraft.lp.playerAABB.AA.y}, {Minecraft.lp.playerAABB.AA.z}");
+            }
         }
     }
 }
