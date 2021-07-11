@@ -25,7 +25,6 @@ namespace Bhop.Modules
 
             // Deal with modules VVV
             new AirJump();
-            new Autosprint();
             new CreativeFly();
             new DeathCoords();
             new Jesus();

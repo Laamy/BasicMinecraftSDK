@@ -11,9 +11,9 @@ namespace Bhop.Modules.Module
             MinecraftEvents.onDeath += playerDied;
         }
 
-        private void playerDied(object sender, plrEvent e)
+        private void playerDied(object sender, deathEventArgs e)
         {
-            if (!Minecraft.lp.isNull)
+            if (!Minecraft.lp.isNull && enabled)
             {
                 Console.WriteLine($"You died at {Minecraft.lp.playerAABB.AA.x}, {Minecraft.lp.playerAABB.AA.y}, {Minecraft.lp.playerAABB.AA.z}");
             }
