@@ -13,7 +13,7 @@ namespace Bhop.Modules.Command
             {
                 try
                 {
-                    Vec3 tempPos = new Vec3(Convert.ToSingle(args[1]), Convert.ToSingle(args[2]), Convert.ToSingle(args[3]));
+                    Vec3i tempPos = new Vec3i(Convert.ToSingle(args[1]), Convert.ToSingle(args[2]), Convert.ToSingle(args[3]));
                     Minecraft.lp.setPos(tempPos);
                 }
                 catch

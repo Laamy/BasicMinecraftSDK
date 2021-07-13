@@ -83,6 +83,7 @@
     <Compile Include="Modules\Command\Teleportation.cs" />
     <Compile Include="Modules\Mod.cs" />
     <Compile Include="Modules\ModHandle.cs" />
+    <Compile Include="Modules\Module\TestModule.cs" />
     <Compile Include="Modules\Module\Noclip.cs" />
     <Compile Include="Modules\Module\DeathCoords.cs" />
     <Compile Include="Modules\Module\CreativeFly.cs" />

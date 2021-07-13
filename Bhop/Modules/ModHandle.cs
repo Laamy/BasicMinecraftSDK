@@ -29,6 +29,7 @@ namespace Bhop.Modules
             new DeathCoords();
             new Jesus();
             new Noclip();
+            new TestModule();
 
             // Deal with the commands VVV
             new Commands();

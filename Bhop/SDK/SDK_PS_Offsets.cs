@@ -15,6 +15,7 @@ namespace Bhop.SDK
             placing_Hex = hitting_Hex + 1;
 
         public static ulong localPlayer = 0x04020228;
+        public static string localPlayer_EntityList_offsets = "0 18 B8 378 58 ";
         public static string localPlayer_offsets = "0 18 B8 ";
         public static string gameDim_offsets = "370 0";
         public static ulong // localPlayer

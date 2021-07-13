@@ -275,6 +275,19 @@ namespace Bhop.SDK.YaamiSDK
             playerAABB.AA.z = vec.z;
             playerAABB.BB.z = vec.z + 0.6f;
         }
+        /// <summary>
+        /// External setPos function
+        /// </summary>
+        /// <param name="vec">Vector3</param>
+        public void setPos(Vec3i vec)
+        {
+            playerAABB.AA.x = vec.x;
+            playerAABB.BB.x = vec.x + 0.6f;
+            playerAABB.AA.y = vec.y;
+            playerAABB.BB.y = vec.y + 1.8f;
+            playerAABB.AA.z = vec.z;
+            playerAABB.BB.z = vec.z + 0.6f;
+        }
 
         /// <summary>
         /// External refreshAABB function
@@ -286,6 +299,125 @@ namespace Bhop.SDK.YaamiSDK
         /// </summary>
         public Vec3 lookingVec
         { get => MathUtils.directionalVector((bodyRots.x + 89.9f) * (float)Math.PI / 178F, bodyRots.y * (float)Math.PI / 178F); }
+        #endregion
+
+        #region Custom voids
+        /// <summary>
+        /// Returns a list of every entity in render distance
+        /// </summary>
+        /// <returns></returns>
+        public List<LocalPlayer> getRawEntities()
+        {
+            List<LocalPlayer> entityList = new List<LocalPlayer>();
+            for (int i = 0; i < 0xFF; i++)
+            {
+                LocalPlayer entity = new LocalPlayer(MCM.baseEvaluatePointer(SDK_PS_Offsets.localPlayer, MCM.ceByte2uLong(SDK_PS_Offsets.localPlayer_EntityList_offsets + $"{(i * 8).ToString("X")} 0")));
+                entityList.Add(entity);
+            }
+            return entityList;
+        }
+
+        /// <summary>
+        /// Returns a list of every entity in render distance filtered out from empty entities
+        /// </summary>
+        /// <returns></returns>
+        public List<LocalPlayer> getEntities()
+        {
+            List<LocalPlayer> entityList = new List<LocalPlayer>();
+            for (int i = 0; i < 0xFF; i++)
+            {
+                LocalPlayer entity = new LocalPlayer(MCM.baseEvaluatePointer(SDK_PS_Offsets.localPlayer, MCM.ceByte2uLong(SDK_PS_Offsets.localPlayer_EntityList_offsets + $"{(i * 8).ToString("X")} 0")));
+                if (entity.type.Length >= 3 && entity.username.Length >= 3 && !entity.isNull)
+                    entityList.Add(entity);
+            }
+            return entityList;
+        }
+
+        /// <summary>
+        /// Returns a list of minecraft entities of the class "Player"
+        /// </summary>
+        /// <returns></returns>
+        public List<LocalPlayer> getPlayers() => getTypeEntities("player");
+
+        /// <summary>
+        /// Returns a list of minecraft entities of your customized class
+        /// </summary>
+        public List<LocalPlayer> getTypeEntities(string type)
+        {
+            List<LocalPlayer> entityList = new List<LocalPlayer>();
+            for (int i = 0; i < 0xFF; i++)
+            {
+                LocalPlayer entity = new LocalPlayer(MCM.baseEvaluatePointer(SDK_PS_Offsets.localPlayer, MCM.ceByte2uLong(SDK_PS_Offsets.localPlayer_EntityList_offsets + $"{(i * 8).ToString("X")} 0")));
+                if (entity.type == type && entity.username.Length >= 3 && entity.username != username && entity.playerAABB.AA.x != playerAABB.AA.x
+                    && entity.playerAABB.AA.y != playerAABB.AA.y && entity.playerAABB.AA.z != playerAABB.AA.z && !entity.isNull)
+                    entityList.Add(entity);
+            }
+            return entityList;
+        }
+
+        /// <summary>
+        /// Returns the closest player
+        /// </summary>
+        public LocalPlayer getClosestPlayer() => getClosestEntity("player");
+
+        /// <summary>
+        /// Returns the closest custom entity
+        /// </summary>
+        public LocalPlayer getClosestEntity(string type)
+        {
+            var entList = getTypeEntities(type);
+
+            List<double> distances = new List<double>();
+
+            foreach (LocalPlayer currEnt in entList)
+                distances.Add(currEnt.distanceTo(Minecraft.lp));
+
+            if (distances.Count > 0)
+            {
+                distances.Sort();
+                foreach (LocalPlayer ent in entList)
+                    if (ent.distanceTo(Minecraft.lp) == distances[0]) return ent;
+            }
+
+            return (LocalPlayer)null;
+        }
+
+        /// <summary>
+        /// Flares distanceTo function ported into YaamiSDK
+        /// </summary>
+        public double distanceTo(LocalPlayer e)
+        {
+            float dX = playerAABB.AA.x - e.playerAABB.AA.x;
+            float dY = playerAABB.AA.y - e.playerAABB.AA.y;
+            float dZ = playerAABB.AA.z - e.playerAABB.AA.z;
+            return Math.Sqrt(dX * dX + dY * dY + dZ * dZ);
+        }
+
+        /// <summary>
+        /// worldToScreen externally
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        public Vec2 WorldToScreen(LocalPlayer entity, uint fov)
+        {
+            Vec3 delta = new Vec3(
+                playerAABB.AA.x - entity.playerAABB.AA.x,
+                playerAABB.AA.y - entity.playerAABB.AA.y,
+                playerAABB.AA.z - entity.playerAABB.AA.z);
+
+            float deltaX = delta.x;
+            float deltaY = delta.y;
+            float deltaZ = delta.z;
+
+            deltaX = deltaX * (float)Math.Sin(bodyRots.y);
+            deltaY = deltaY * (float)Math.Sin(bodyRots.x);
+            deltaZ = deltaZ * (float)Math.Cos(bodyRots.y) * (float)Math.Cos(bodyRots.x);
+
+            deltaX = (deltaX / deltaZ * fov) + 960;
+            deltaY = (deltaY / deltaZ * fov) + 540;
+
+            return new Vec2(deltaX, deltaY);
+        }
         #endregion
 
         #region Defined Enums

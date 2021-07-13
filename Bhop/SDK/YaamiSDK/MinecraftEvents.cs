@@ -8,12 +8,12 @@ namespace Bhop.SDK.YaamiSDK
 {
     class MinecraftEvents
     {
-        public static EventHandler<deathEventArgs> onDeath; // Perfect!
+        public static EventHandler<deathEventArgs> onDeath; // Perfect
         public static EventHandler<jumpEventArgs> onJump; // Slow ;-;
-        public static EventHandler<enterWaterEventArgs> enterWater; // nearly there...
-        public static EventHandler<moveForwardsEventArgs> onMoveForwards; // Unsure ;-;
-        public static EventHandler<enterFlightEventArgs> enterFlight; // Should be perfect like ondeath due to how it works lmao
-        public static EventHandler<changedWorldEventArgs> changedWorld; // Perfect!
+        public static EventHandler<enterWaterEventArgs> enterWater; // Perfect
+        public static EventHandler<moveForwardsEventArgs> onMoveForwards; // Perfect
+        public static EventHandler<enterFlightEventArgs> enterFlight; // Perfect
+        public static EventHandler<changedWorldEventArgs> changedWorld; // Perfect
 
         public static void invokeSetup()
         {

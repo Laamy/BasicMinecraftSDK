@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bhop.SDK.YaamiSDK
 {
@@ -62,6 +58,86 @@ namespace Bhop.SDK.YaamiSDK
         }
 
         /// <summary>
+        /// Distance to new vector.
+        /// </summary>
+        public float Distance(Vec3i _Vec3)
+        {
+            float diff_x = x - _Vec3.x, diff_y = y - _Vec3.y, diff_z = z - _Vec3.z;
+            return (float)Math.Sqrt(diff_x * diff_x + diff_y * diff_y + diff_z * diff_z);
+        }
+
+        /// <summary>
+        /// Set vector as new vector
+        /// </summary>
+        /// <param name="vec">new Vec3(?,?,?)</param>
+        public void setAs(Vec3 vec)
+        {
+            x = vec.x;
+            y = vec.y;
+            z = vec.z;
+        }
+    }
+    public class Vec3i
+    {
+        public Vec3i(float x, float y, float z)
+        {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        public Vec3i(Vec3 vec)
+        {
+            this.x = vec.x;
+            this.y = vec.y;
+            this.z = vec.z;
+        }
+
+        /// <summary>
+        /// Vector x
+        /// </summary>
+        public float x;
+
+        /// <summary>
+        /// Vector y
+        /// </summary>
+        public float y;
+
+        /// <summary>
+        /// Vector z
+        /// </summary>
+        public float z;
+
+        /// <summary>
+        /// Distance to new vector.
+        /// </summary>
+        public float Distance(Vec3 _Vec3)
+        {
+            float diff_x = x - _Vec3.x, diff_y = y - _Vec3.y, diff_z = z - _Vec3.z;
+            return (float)Math.Sqrt(diff_x * diff_x + diff_y * diff_y + diff_z * diff_z);
+        }
+
+        /// <summary>
+        /// Distance to new vector.
+        /// </summary>
+        public float Distance(Vec3i _Vec3)
+        {
+            float diff_x = x - _Vec3.x, diff_y = y - _Vec3.y, diff_z = z - _Vec3.z;
+            return (float)Math.Sqrt(diff_x * diff_x + diff_y * diff_y + diff_z * diff_z);
+        }
+
+        /// <summary>
+        /// Set vector as new vector
+        /// </summary>
+        /// <param name="vec">new Vec3(?,?,?)</param>
+        public void setAs(Vec3i vec)
+        {
+            x = vec.x;
+            y = vec.y;
+            z = vec.z;
+        }
+
+        /// <summary>
         /// Set vector as new vector
         /// </summary>
         /// <param name="vec">new Vec3(?,?,?)</param>
@@ -112,6 +188,56 @@ namespace Bhop.SDK.YaamiSDK
         /// </summary>
         /// <param name="vec">new Vec2(?,?)</param>
         public void setAs(Vec2 vec)
+        {
+            x = vec.x;
+            y = vec.y;
+        }
+    }
+    public class Vec2i
+    {
+        public Vec2i(float x, float y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+
+        public Vec2i(Vec2 vec)
+        {
+            this.x = vec.x;
+            this.y = vec.y;
+        }
+
+        public Vec2i(Vec2i vec)
+        {
+            this.x = vec.x;
+            this.y = vec.y;
+        }
+
+        /// <summary>
+        /// Vector y
+        /// </summary>
+        public float x;
+
+        /// <summary>
+        /// Vector y
+        /// </summary>
+        public float y;
+
+        /// <summary>
+        /// Set vector as new vector
+        /// </summary>
+        /// <param name="vec">new Vec2(?,?)</param>
+        public void setAs(Vec2 vec)
+        {
+            x = vec.x;
+            y = vec.y;
+        }
+
+        /// <summary>
+        /// Set vector as new vector
+        /// </summary>
+        /// <param name="vec">new Vec2i(?,?)</param>
+        public void setAs(Vec2i vec)
         {
             x = vec.x;
             y = vec.y;
@@ -212,5 +338,11 @@ namespace Bhop.SDK.YaamiSDK
         /// </summary>
         public static Vec3 directionalVector(float yaw, float pitch)
         { return new Vec3((float)Math.Cos(yaw) * (float)Math.Cos(pitch), (float)Math.Sin(pitch), (float)Math.Sin(yaw) * (float)Math.Cos(pitch)); }
+
+        /// <summary>
+        /// Direction as vector.
+        /// </summary>
+        public static Vec3i directionalVector_Vec3i(float yaw, float pitch)
+        { return new Vec3i((float)Math.Cos(yaw) * (float)Math.Cos(pitch), (float)Math.Sin(pitch), (float)Math.Sin(yaw) * (float)Math.Cos(pitch)); }
     }
 }
